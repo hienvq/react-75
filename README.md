@@ -1,70 +1,57 @@
-# Getting Started with Create React App
+Lifecycle Component
+Mounting > Updating > Unmounting
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+componentDidMount = goi sau khi component xuat hien lan dau
+componentDidUpdate = goi sau moi lan component update
+componentWillUnmount = goi trc khi component bien mat
+=> chi co trong class component = stateful component
+Trc phien ban 16.8, khi chua co hook, functional component chi dung de hien thi UI, ko co state => ten goi khac: stateless component
 
-## Available Scripts
+Ke tu phien ban 16.8, Hook ra doi
+Hook giup functional component co the su dung lifecycle tuong tu class component
+Hook chi co the su dung trong functional component!!!
 
-In the project directory, you can run:
+1. State Hook 
+Array destructoring: const array = [1,2]; const [a,b] = array;
+const [state, setState] = React.useState(initValue)
 
-### `npm start`
+State hook cho phep quan ly state trong functional component.
+useState tra ve 1 mang gom 2 phần tử
+pt1: Giá trị của state
+pt2: Phương thức cập nhật lại state & re-render component
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+cách 1: setState(newValue)
+cách 2: setState((currentState) => newState)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+2. Effect Hook
+React.useEffect(() => {
+  // do sth
+}, [dependencies])
 
-### `npm test`
+dependencies co 3 kieu truyen
++ Ko truyen => Sẽ gọi function lần đầu tiên component xuất hiện và mỗi lần component re-render  => componentDidUpdate + componentDidMount
++ Truyen mang rong [] => sẽ gọi function lần đầu tiên component xuất hiện và có thể gọi trước khi component biến mất -> componentDidMount + componentWillUnmount
++ Truyen mang co phan tu [a,b,c] => sẽ gọi function mỗi lần có phần tử thay đổi giá trị + lần đầu tiên component xuất hiện
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+3. Context Hook
+const context = React.useContext(ContextName)
+- Giúp lấy giá trị trong context
 
-### `npm run build`
+4. Custom Hook
+Do Developer tự viết
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+5. Memo Hook
+const cachedValue = React.useMemo(calculateValue, dependencies)
+Cache Giá trị
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+6. Callback Hook
+const cachedFn = useCallback(fn, dependencies)
+Cache Function
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+7. Reducer Hook
+const [state, dispatch] = useReducer(reducer, initialArg, init?)
+- Dùng quản lý state phức tạp
+- reducer: function nhận vào action + state hiện tại => trả về state mới
+- dispatch: là phương thức để gửi action
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Bài tập: Dùng useReducer để thêm và xoá phần tử trong 1 list ul>li
