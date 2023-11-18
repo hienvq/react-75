@@ -1,12 +1,16 @@
 import axios from "axios";
 
 const axiosClient = axios.create({
-  baseURL: "https://64cbbf882eafdcdc8519400a.mockapi.io",
+  baseURL: "http://localhost:3004",
 });
 
 axiosClient.interceptors.request.use(
   function (config) {
-    config.headers["access-token"] = "my-token";
+    const token = localStorage.getItem("access-token");
+    if (token) {
+      config.headers["access-token"] = token;
+    }
+
     return config;
   },
   function (error) {

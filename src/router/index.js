@@ -3,11 +3,44 @@ import LandingPage from "../pages/LandingPage";
 import LoginPage from "../pages/LoginPage";
 import AdminLayout from "../components/AdminLayout";
 import UserPage from "../pages/UserPage";
-
+import CarItem from "../components/CarItem";
+const fakeData = [
+  {
+    img: "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1161.jpg",
+    name: "1",
+    price: 1,
+  },
+  {
+    img: "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1161.jpg",
+    name: "1",
+    price: 1,
+  },
+  {
+    img: "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1161.jpg",
+    name: "1",
+    price: 1,
+  },
+];
 export const myRouter = createBrowserRouter([
   {
     path: "/",
     element: <LandingPage />,
+    children: [
+      {
+        path: "sedan-honda",
+        element: (
+          <div style={{ display: "flex", columnGap: 20 }}>
+            {fakeData.map((e) => (
+              <CarItem
+                img={"https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1161.jpg"}
+                name={"Sedan Honda"}
+                price={1000000}
+              />
+            ))}
+          </div>
+        ),
+      },
+    ],
   },
   {
     path: "/login",

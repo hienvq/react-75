@@ -69,7 +69,7 @@ export default function UserPage() {
       ),
     },
   ];
-  const [data, getData] = useUserList();
+  const [data, getData, total] = useUserList();
   const [open, setOpen] = useState(false);
   const [initialValues, setInitValues] = useState({});
   const onSave = async (values) => {
@@ -86,7 +86,7 @@ export default function UserPage() {
       });
     }
 
-    await getData();
+    await getData(1);
   };
   const onCancel = () => {
     setOpen(false);
@@ -95,6 +95,10 @@ export default function UserPage() {
 
   const showModal = () => {
     setOpen(true);
+  };
+  const handleChangePage = async (page) => {
+    console.log("HienVQ ~  page:", page);
+    await getData(page);
   };
   return (
     <div className={styles.userPage}>
@@ -105,7 +109,13 @@ export default function UserPage() {
         </Button>
       </div>
 
-      <Table columns={columns} dataSource={data} rowKey="id" />
+      <Table
+        columns={columns}
+        dataSource={data}
+        rowKey="id"
+        pagination={{ pageSize: 5, total: total, onChange: handleChangePage }}
+      />
     </div>
   );
 }
+// số trang = Làm tròn lên (tổng số bản ghi / số lượng bản ghi trên 1 trang)

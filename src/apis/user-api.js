@@ -1,7 +1,7 @@
 import axiosClient from "./base";
 
 const getUsers = (config) => {
-  return axiosClient.get(`/users`, config); // GET http://localhost:3004/user
+  return axiosClient.get(`/users`, config); // GET http://localhost:3004/user?page=1&limit=10
 };
 const createUser = (data, config) => {
   return axiosClient.post("/users", data, config); // POST http://localhost:3004/user

@@ -10,7 +10,7 @@ import {
   VideoCameraOutlined,
 } from "@ant-design/icons";
 import { Button, Layout, Menu, theme } from "antd";
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { Navigate, Outlet, useLocation, useNavigate } from "react-router-dom";
 const { Header, Content, Footer, Sider } = Layout;
 
 const AdminLayout = () => {
@@ -19,7 +19,10 @@ const AdminLayout = () => {
   } = theme.useToken();
   const navigate = useNavigate();
   const location = useLocation();
-  console.log("HienVQ ~  location:", location);
+  const handleLogout = () => {
+    localStorage.removeItem("access-token");
+    navigate("/login");
+  };
   const items = [
     {
       key: "user",
@@ -47,8 +50,8 @@ const AdminLayout = () => {
     },
   ];
   const activeKey = items.find((element) => location.pathname.includes(element.key))?.key || "user";
-
-  return (
+  const token = localStorage.getItem("access-token");
+  return token ? (
     <Layout hasSider>
       <Sider
         style={{
@@ -82,7 +85,9 @@ const AdminLayout = () => {
             borderBottom: "1px solid #ddd",
           }}
         >
-          <Button danger>Logout</Button>
+          <Button danger onClick={handleLogout}>
+            Logout
+          </Button>
         </Header>
         <Content
           style={{
@@ -94,6 +99,8 @@ const AdminLayout = () => {
         </Content>
       </Layout>
     </Layout>
+  ) : (
+    <Navigate to={"/login"} />
   );
 };
 export default AdminLayout;
