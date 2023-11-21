@@ -4,6 +4,8 @@ import LoginPage from "../pages/LoginPage";
 import AdminLayout from "../components/AdminLayout";
 import UserPage from "../pages/UserPage";
 import CarItem from "../components/CarItem";
+import TestPage from "../pages/TestPage";
+import Test2Page from "../pages/Test2Page";
 const fakeData = [
   {
     img: "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1161.jpg",
@@ -67,6 +69,15 @@ export const myRouter = createBrowserRouter([
         element: <h1>category Page</h1>,
       },
     ],
+  },
+  {
+    path: "/test",
+    element: (
+      <>
+        <TestPage />
+        <Test2Page />
+      </>
+    ),
   },
 ]);
 

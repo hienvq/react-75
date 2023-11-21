@@ -2,8 +2,14 @@ import React from "react";
 import "./App.css";
 import { RouterProvider } from "react-router-dom";
 import { myRouter } from "./router";
+import { Provider } from "react-redux";
+import store from "./store/store";
 function App() {
-  return <RouterProvider router={myRouter}></RouterProvider>;
+  return (
+    <Provider store={store}>
+      <RouterProvider router={myRouter}></RouterProvider>
+    </Provider>
+  );
 }
 // onclick, onchange
 // <Person id="id" text="myname" /> => props = {id:"id", text:"myname"}
