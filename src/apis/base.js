@@ -3,7 +3,7 @@ import axios from "axios";
 const axiosClient = axios.create({
   baseURL: "http://54.254.134.59/api",
 });
-// http://54.254.134.59/api
+// http://54.254.134.59/api/products <=> http://localhost:3004/products
 axiosClient.interceptors.request.use(
   function (config) {
     const token = localStorage.getItem("access-token");

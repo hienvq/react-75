@@ -26,24 +26,28 @@ const fakeData = [
 export const myRouter = createBrowserRouter([
   {
     path: "/",
-    element: <LandingPage />,
-    children: [
-      {
-        path: "sedan-honda",
-        element: (
-          <div style={{ display: "flex", columnGap: 20 }}>
-            {fakeData.map((e) => (
-              <CarItem
-                img={"https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1161.jpg"}
-                name={"Sedan Honda"}
-                price={1000000}
-              />
-            ))}
-          </div>
-        ),
-      },
-    ],
+    element: <h1>ABC</h1>
   },
+  // {
+  //   path: "/",
+  //   element: <LandingPage />,
+  //   children: [
+  //     {
+  //       path: "sedan-honda",
+  //       element: (
+  //         <div style={{ display: "flex", columnGap: 20 }}>
+  //           {fakeData.map((e) => (
+  //             <CarItem
+  //               img={"https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1161.jpg"}
+  //               name={"Sedan Honda"}
+  //               price={1000000}
+  //             />
+  //           ))}
+  //         </div>
+  //       ),
+  //     },
+  //   ],
+  // },
   {
     path: "/login",
     element: <LoginPage />,
