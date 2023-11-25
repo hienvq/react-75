@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import store from "../../store/store";
 import { connect, useDispatch, useSelector } from "react-redux";
-import { decrease, increase } from "../../store/actions/counterAction";
-import { numberSelector } from "../../store/selectors/counterSelector";
+import { counterSelector, numberSelector } from "../../store/selectors/counterSelector";
+import { increase, decrease, increaseAsync } from "../../store/slices/counterSlice";
 
 function TestPage(props) {
   const dispatch = useDispatch();
-  const number = useSelector(numberSelector);
+  const number = useSelector(counterSelector);
   // const {state, dispatch} = props
   const handleInc = () => {
     //dispatch action
-    dispatch(increase(10));
+    // dispatch(increase(10));
+    dispatch(increaseAsync(10));
   };
   const handleDec = () => {
     //dispatch action

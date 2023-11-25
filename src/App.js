@@ -4,9 +4,11 @@ import { RouterProvider } from "react-router-dom";
 import { myRouter } from "./router";
 import { Provider } from "react-redux";
 import store from "./store/store";
+import MyNotification from "./components/Notification";
 function App() {
   return (
     <Provider store={store}>
+      <MyNotification />
       <RouterProvider router={myRouter}></RouterProvider>
     </Provider>
   );

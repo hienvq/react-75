@@ -10,4 +10,20 @@ const decrease = (data) => {
     payload: data,
   };
 };
-export { increase, decrease };
+const increaseAsync = (data) => {
+  return async (dispatch, getState, object) => {
+    console.log("HienVQ ~  object:", object);
+    const currentState = getState();
+    // console.log("HienVQ ~  currentState:", currentState);
+    await delay();
+    dispatch(increase(data));
+  };
+};
+const delay = () => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve();
+    }, 2000);
+  });
+};
+export { increase, decrease, increaseAsync };

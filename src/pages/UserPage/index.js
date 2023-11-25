@@ -5,6 +5,8 @@ import { createUser, deleteUser, getUsers, updateUser } from "../../apis/user-ap
 import useUserList from "../../hooks/useUserList";
 import { ExclamationCircleOutlined, PlusOutlined } from "@ant-design/icons";
 import UserForm from "../../components/UserForm";
+import { useDispatch } from "react-redux";
+import { notiError, notiSuccess } from "../../store/slices/notiSlice";
 
 export default function UserPage() {
   const [modal, contextHolder] = Modal.useModal();
@@ -72,21 +74,27 @@ export default function UserPage() {
   const [data, getData, total] = useUserList();
   const [open, setOpen] = useState(false);
   const [initialValues, setInitValues] = useState({});
+  const dispatch = useDispatch();
   const onSave = async (values) => {
-    //call api+ reload data
-    if (!values.id) {
-      await createUser({
-        name: values.name,
-        avatar: values.avatar,
-      });
-    } else {
-      await updateUser(values.id, {
-        name: values.name,
-        avatar: values.avatar,
-      });
+    try {
+      //call api+ reload data
+      // throw new Error("ERRRR");
+      if (!values.id) {
+        await createUser({
+          name: values.name,
+          avatar: values.avatar,
+        });
+      } else {
+        await updateUser(values.id, {
+          name: values.name,
+          avatar: values.avatar,
+        });
+      }
+      await getData(1);
+      dispatch(notiSuccess({ message: "SUCCESSSSS" }));
+    } catch (err) {
+      dispatch(notiError({ message: "ERRRORRRRRR" }));
     }
-
-    await getData(1);
   };
   const onCancel = () => {
     setOpen(false);

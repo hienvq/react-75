@@ -2,15 +2,17 @@ import React, { useState } from "react";
 import store from "../../store/store";
 
 export default function Test2Page() {
-  const [count, setCount] = useState(store.getState().counter.count);
+  let [count, setCount] = useState(store.getState().counter.count);
   console.log("HienVQ ~  count:", count);
   const handleInc = () => {
     //dispatch action
-    store.dispatch({ type: "INC", payload: 10 });
+    // store.dispatch({ type: "INC", payload: 10 });
+    count = 100;
   };
   const handleDec = () => {
     //dispatch action
-    store.dispatch({ type: "DEC", payload: 10 });
+    // store.dispatch({ type: "DEC", payload: 10 });
+    console.log("HienVQ ~  count:", count);
   };
 
   store.subscribe(() => setCount(store.getState().counter.count));
